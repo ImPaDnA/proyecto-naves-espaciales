@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://7o17cqlv6nq8"]
+
+[ext_resource type="Script" uid="uid://dfagl8ilewdr1" path="res://explosion_visual.gd" id="1_nm7en"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4o5dr"]
+shading_mode = 0
+albedo_color = Color(0.99450713, 0.76302063, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_m2dq1"]
+material = SubResource("StandardMaterial3D_4o5dr")
+size = Vector3(0.2, 0.2, 0.2)
+
+[node name="ExplosionVisual" type="Node3D" unique_id=11606608]
+script = ExtResource("1_nm7en")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="." unique_id=1948337360]
+emitting = false
+amount = 20
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+mesh = SubResource("BoxMesh_m2dq1")
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0

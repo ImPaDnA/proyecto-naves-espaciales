@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bxfoiwej20fyw"]
+
+[ext_resource type="AudioStream" uid="uid://dg54khcab5m31" path="res://Sonidos/explosion.wav" id="1_cfldi"]
+[ext_resource type="Script" uid="uid://c3r38pyfxmdn7" path="res://explosion_sound.gd" id="2_cxoyd"]
+
+[node name="ExplosionSound" type="AudioStreamPlayer" unique_id=635838078]
+stream = ExtResource("1_cfldi")
+script = ExtResource("2_cxoyd")

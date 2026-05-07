@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dk7j84g4hywbi"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kvuyn"]
+emission_shape = 3
+emission_box_extents = Vector3(40, 40, 1)
+direction = Vector3(0, 0, -5)
+spread = 0.0
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iwdbp"]
+shading_mode = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_4hc1s"]
+material = SubResource("StandardMaterial3D_iwdbp")
+size = Vector3(0.1, 0.1, 5)
+
+[node name="StarParticles" type="Node3D" unique_id=2131831020]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1198908868]
+amount = 100
+lifetime = 3.0
+preprocess = 2.0
+process_material = SubResource("ParticleProcessMaterial_kvuyn")
+draw_pass_1 = SubResource("BoxMesh_4hc1s")

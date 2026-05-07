@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://cga6mmrjchg7r"]
+
+[ext_resource type="Texture2D" uid="uid://baa1yoo5cab5v" path="res://Sprites/environment.png" id="1_0kh0y"]
+[ext_resource type="PackedScene" uid="uid://ccs7wo23y0j4a" path="res://Escenas/player.tscn" id="1_vt1rs"]
+[ext_resource type="PackedScene" uid="uid://b0u20klt0snb1" path="res://Escenas/enemy_spawner.tscn" id="2_0kh0y"]
+[ext_resource type="PackedScene" uid="uid://dk7j84g4hywbi" path="res://Escenas/star_particles.tscn" id="4_7xwpo"]
+[ext_resource type="Shader" uid="uid://bgimi8gbq65xy" path="res://Escenas/efecto_crt.gdshader" id="5_2ia52"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_7xwpo"]
+panorama = ExtResource("1_0kh0y")
+
+[sub_resource type="Sky" id="Sky_2ia52"]
+sky_material = SubResource("PanoramaSkyMaterial_7xwpo")
+
+[sub_resource type="Environment" id="Environment_crgrh"]
+background_mode = 2
+sky = SubResource("Sky_2ia52")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_crgrh"]
+shader = ExtResource("5_2ia52")
+shader_parameter/shake_subtle = 1.0
+shader_parameter/grain_amount = 0.03
+shader_parameter/distortion_size = 1.0
+
+[node name="Main" type="Node3D" unique_id=583613922]
+
+[node name="player" parent="." unique_id=523846709 instance=ExtResource("1_vt1rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.353649, -13.141605)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=2127129412]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.7458887)
+
+[node name="EnemySpawner" parent="." unique_id=1169486019 instance=ExtResource("2_0kh0y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -250)
+
+[node name="StarParticles" parent="." unique_id=2131831020 instance=ExtResource("4_7xwpo")]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=497582944]
+environment = SubResource("Environment_crgrh")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=55067196]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=678778674]
+material = SubResource("ShaderMaterial_crgrh")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
