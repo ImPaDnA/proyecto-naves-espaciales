@@ -1,0 +1,129 @@
+[gd_scene format=3 uid="uid://dqi0sal6w18fm"]
+
+[ext_resource type="PackedScene" uid="uid://dk7j84g4hywbi" path="res://Escenas/star_particles.tscn" id="1_hjcy7"]
+[ext_resource type="Script" uid="uid://dx2gx6n5m7t5c" path="res://Scripts/main_menu.gd" id="1_qn7j5"]
+[ext_resource type="Texture2D" uid="uid://baa1yoo5cab5v" path="res://Sprites/environment.png" id="2_qn7j5"]
+[ext_resource type="AudioStream" uid="uid://4j4yql4alix5" path="res://Sonidos/menu.wav" id="4_qn7j5"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_xgkoo"]
+panorama = ExtResource("2_qn7j5")
+
+[sub_resource type="Sky" id="Sky_s5s4m"]
+sky_material = SubResource("PanoramaSkyMaterial_xgkoo")
+
+[sub_resource type="Environment" id="Environment_a082v"]
+background_mode = 2
+sky = SubResource("Sky_s5s4m")
+sky_rotation = Vector3(2.284636, 0.6457718, -0.4904375)
+glow_enabled = true
+glow_bloom = 1.0
+volumetric_fog_enabled = true
+adjustment_enabled = true
+adjustment_brightness = 1.5
+adjustment_saturation = 0.9
+
+[node name="MainMenu" type="Node3D" unique_id=684042441]
+script = ExtResource("1_qn7j5")
+
+[node name="StarParticles" parent="." unique_id=2131831020 instance=ExtResource("1_hjcy7")]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=444068016]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=930345198]
+environment = SubResource("Environment_a082v")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=550285863]
+
+[node name="InterfazMenu" type="Control" parent="CanvasLayer" unique_id=1205939438]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MenuPrincipal" type="VBoxContainer" parent="CanvasLayer/InterfazMenu" unique_id=1259046410]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.96
+offset_top = -36.0
+offset_right = 222.04001
+offset_bottom = 203.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+
+[node name="Btn_Jugar" type="Button" parent="CanvasLayer/InterfazMenu/MenuPrincipal" unique_id=1237301304]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 50
+text = "JUGAR"
+
+[node name="Btn_Opciones" type="Button" parent="CanvasLayer/InterfazMenu/MenuPrincipal" unique_id=434281287]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 50
+text = "OPCIONES"
+
+[node name="Btn_Salir" type="Button" parent="CanvasLayer/InterfazMenu/MenuPrincipal" unique_id=503321379]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 50
+text = "SALIR"
+
+[node name="MenuOpciones" type="VBoxContainer" parent="CanvasLayer/InterfazMenu" unique_id=891132401]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -136.0
+offset_top = -80.0
+offset_right = 136.0
+offset_bottom = 78.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="CheckCRT" type="CheckBox" parent="CanvasLayer/InterfazMenu/MenuOpciones" unique_id=1134938089]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 25
+button_pressed = true
+text = "CRT"
+
+[node name="Btn_Atras" type="Button" parent="CanvasLayer/InterfazMenu/MenuOpciones" unique_id=971644973]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 25
+text = "Atrás"
+flat = true
+
+[node name="AudioMenu" type="AudioStreamPlayer" parent="." unique_id=800009561]
+stream = ExtResource("4_qn7j5")
+autoplay = true
+
+[connection signal="pressed" from="CanvasLayer/InterfazMenu/MenuPrincipal/Btn_Jugar" to="." method="_on_btn_jugar_pressed"]
+[connection signal="pressed" from="CanvasLayer/InterfazMenu/MenuPrincipal/Btn_Opciones" to="." method="_on_btn_opciones_pressed"]
+[connection signal="pressed" from="CanvasLayer/InterfazMenu/MenuPrincipal/Btn_Salir" to="." method="_on_btn_salir_pressed"]
+[connection signal="toggled" from="CanvasLayer/InterfazMenu/MenuOpciones/CheckCRT" to="." method="_on_check_crt_toggled"]
+[connection signal="pressed" from="CanvasLayer/InterfazMenu/MenuOpciones/Btn_Atras" to="." method="_on_btn_atras_pressed"]

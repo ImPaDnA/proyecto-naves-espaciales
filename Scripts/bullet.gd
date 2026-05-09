@@ -15,7 +15,7 @@ func _physics_process(_delta):
 	# move_and_slide() se llama sin nada dentro de los paréntesis
 	move_and_slide()
 
-# ¡Esta es la nueva señal correcta!
+# Señal de la bala
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	# Esto imprimirá en la consola (abajo en el editor) el nombre de lo que sea que toque
 	print("La bala acaba de chocar con: ", body.name)
@@ -33,6 +33,9 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		
 		# mover la explosion visual a donde estaba el enemigo
 		vfx.global_position = body.global_position
+		
+		#Le decimos al cerebro global que sume 10 puntos.
+		Global.sumar_puntos(10)
 		
 		# destruimos el enemigo y la bala
 		print("¡Es un enemigo! Borrando ambos...")

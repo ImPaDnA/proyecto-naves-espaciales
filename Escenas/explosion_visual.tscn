@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://7o17cqlv6nq8"]
 
-[ext_resource type="Script" uid="uid://dfagl8ilewdr1" path="res://explosion_visual.gd" id="1_nm7en"]
+[ext_resource type="Script" uid="uid://dfagl8ilewdr1" path="res://Scripts/explosion_visual.gd" id="1_nm7en"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4o5dr"]
 shading_mode = 0

@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dbewk7llkava6"]
+
+[ext_resource type="Texture2D" uid="uid://bffwxiubik7o0" path="res://Sprites/CRT 4_3 Transparente con marco.png" id="1_yv42y"]
+
+[node name="ColorRectCRT" type="TextureRect" unique_id=373754005]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_yv42y")

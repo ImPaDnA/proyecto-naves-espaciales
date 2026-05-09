@@ -35,7 +35,7 @@ func _physics_process(delta):
 	position.y = clamp(transform.origin.y, -10, 10)
 
 	# Disparar
-	if Input.is_action_pressed("ui_shoot") and cooldown <= 0:
+	if Input.is_action_just_pressed("ui_shoot") and cooldown <= 0:
 		cooldown = COOLDOWN * delta
 		$LaserSound.play() # Añadir el sonido de la bala.
 		for gun in guns:

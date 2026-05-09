@@ -1,0 +1,140 @@
+[gd_scene format=3 uid="uid://cga6mmrjchg7r"]
+
+[ext_resource type="Texture2D" uid="uid://baa1yoo5cab5v" path="res://Sprites/environment.png" id="1_0kh0y"]
+[ext_resource type="PackedScene" uid="uid://ccs7wo23y0j4a" path="res://Escenas/player.tscn" id="1_vt1rs"]
+[ext_resource type="PackedScene" uid="uid://b0u20klt0snb1" path="res://Escenas/enemy_spawner.tscn" id="2_0kh0y"]
+[ext_resource type="PackedScene" uid="uid://dk7j84g4hywbi" path="res://Escenas/star_particles.tscn" id="4_7xwpo"]
+[ext_resource type="Script" uid="uid://bhy5qarioj1vx" path="res://Scripts/puntos_hud.gd" id="4_crgrh"]
+[ext_resource type="AudioStream" uid="uid://cy5iba34gqt4b" path="res://Sonidos/battle.wav" id="6_jrocp"]
+[ext_resource type="Script" uid="uid://co1v4aaapat53" path="res://Escenas/capa_pausa.gd" id="7_1gxtx"]
+[ext_resource type="Script" uid="uid://vh53n8svnvp7" path="res://Escenas/audio_lv_1.gd" id="7_7b1ra"]
+[ext_resource type="Script" uid="uid://b3njqyf65nc25" path="res://Escenas/controles_celular.gd" id="9_jf6gd"]
+[ext_resource type="Texture2D" uid="uid://dp4ib1nn2remf" path="res://icon.svg" id="10_o2ptt"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_7xwpo"]
+panorama = ExtResource("1_0kh0y")
+energy_multiplier = 2.0
+
+[sub_resource type="Sky" id="Sky_2ia52"]
+sky_material = SubResource("PanoramaSkyMaterial_7xwpo")
+
+[sub_resource type="Environment" id="Environment_crgrh"]
+background_mode = 2
+background_energy_multiplier = 2.05
+sky = SubResource("Sky_2ia52")
+
+[node name="Level1" type="Node3D" unique_id=583613922]
+
+[node name="player" parent="." unique_id=523846709 instance=ExtResource("1_vt1rs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.353649, -13.141605)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=2127129412]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.7458887)
+
+[node name="EnemySpawner" parent="." unique_id=1169486019 instance=ExtResource("2_0kh0y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -250)
+
+[node name="StarParticles" parent="." unique_id=2131831020 instance=ExtResource("4_7xwpo")]
+transform = Transform3D(1.0000001, 0, 0, 0, -1, 8.7422784e-08, 0, -8.742278e-08, -1.0000001, 0, 0, -309.20505)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=55067196]
+script = ExtResource("4_crgrh")
+
+[node name="MarcadorPuntos" type="Label" parent="CanvasLayer" unique_id=1099245755]
+texture_filter = 1
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 105.0
+offset_bottom = 43.0
+pivot_offset = Vector2(-30, -15)
+theme_override_colors/font_color = Color(1, 0.7882353, 0.043137256, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.69803923, 0.8666667, 0.7294118)
+theme_override_colors/font_outline_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Puntos: 0"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=497582944]
+environment = SubResource("Environment_crgrh")
+
+[node name="AudioLv1" type="AudioStreamPlayer" parent="." unique_id=1535591792]
+stream = ExtResource("6_jrocp")
+volume_db = -15.489
+autoplay = true
+script = ExtResource("7_7b1ra")
+
+[node name="CapaPausa" type="CanvasLayer" parent="." unique_id=1719804166]
+process_mode = 3
+script = ExtResource("7_1gxtx")
+
+[node name="PausaRect" type="ColorRect" parent="CapaPausa" unique_id=1068662368]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.19607843)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CapaPausa/PausaRect" unique_id=1701354698]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -57.0
+offset_top = -33.0
+offset_right = 57.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Btn_Renaudar" type="Button" parent="CapaPausa/PausaRect/VBoxContainer" unique_id=1328276972]
+layout_mode = 2
+text = "Renaudar"
+
+[node name="Btn_Salir" type="Button" parent="CapaPausa/PausaRect/VBoxContainer" unique_id=62310352]
+layout_mode = 2
+text = "Salir del Nivel"
+
+[node name="ControlesCelular" type="CanvasLayer" parent="." unique_id=1059584396]
+script = ExtResource("9_jf6gd")
+
+[node name="BotonIzquierda" type="TouchScreenButton" parent="ControlesCelular" unique_id=1287296138]
+position = Vector2(21, 253)
+scale = Vector2(0.34374997, 0.24249996)
+texture_normal = ExtResource("10_o2ptt")
+action = "ui_left"
+
+[node name="BotonDerecha" type="TouchScreenButton" parent="ControlesCelular" unique_id=918001048]
+position = Vector2(104, 253.00002)
+scale = Vector2(0.34374997, 0.24249996)
+texture_normal = ExtResource("10_o2ptt")
+action = "ui_right"
+
+[node name="BotonArriba" type="TouchScreenButton" parent="ControlesCelular" unique_id=500784752]
+position = Vector2(68, 204)
+scale = Vector2(0.25781253, 0.31281245)
+texture_normal = ExtResource("10_o2ptt")
+action = "ui_up"
+
+[node name="BotonAbajo" type="TouchScreenButton" parent="ControlesCelular" unique_id=1272089271]
+position = Vector2(68, 288)
+scale = Vector2(0.25781253, 0.31281245)
+texture_normal = ExtResource("10_o2ptt")
+action = "ui_down"
+
+[node name="BotonDisparar" type="TouchScreenButton" parent="ControlesCelular" unique_id=638930757]
+position = Vector2(527, 245)
+scale = Vector2(0.57812476, 0.45343748)
+texture_normal = ExtResource("10_o2ptt")
+action = "ui_shoot"
+
+[node name="BotonPausa" type="TouchScreenButton" parent="ControlesCelular" unique_id=573124912]
+position = Vector2(565, 11)
+scale = Vector2(0.49218753, 0.22656251)
+texture_normal = ExtResource("10_o2ptt")
+action = "ui_cancel"
+
+[connection signal="pressed" from="CapaPausa/PausaRect/VBoxContainer/Btn_Renaudar" to="CapaPausa" method="_on_btn_renaudar_pressed"]
+[connection signal="pressed" from="CapaPausa/PausaRect/VBoxContainer/Btn_Salir" to="CapaPausa" method="_on_btn_salir_pressed"]
